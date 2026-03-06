@@ -10,13 +10,18 @@ class BusinessGame:
         # create board
         self.board = Board(cells_string, self.players)
 
-    def run_game(self):
+    def run_game(self):        
         total_rolls = len(self.dice.dice_output_list)
+
         print(f"Starting game with {len(self.players)} players:")
+        
         for turn_index in range(total_rolls):
+            # determine current player
+            player = self.players[(turn_index) % len(self.players)]
+            # tell board to process the turn for this player
             roll = self.dice.roll_die()
             if roll is not None:
-                self.board.take_turn(roll, turn_index)
+                self.board.process_turn(player, roll)
         self.board.display_winner()
 
 
