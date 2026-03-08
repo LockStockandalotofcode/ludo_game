@@ -8,7 +8,12 @@ class LudoGame:
         self.board = Board()
         self.die = Die()
 
-    def run_game(self, player, token):
+    def run_game(self):
+        self.take_turn()
+        if self.check_win_condition():
+            self.display_winner()
+
+    def take_turn(self, player, token):
         die_roll = self.die.roll_die()
         # curr_player = self.decide_player()
         # token = self.curr_player.decide_token()
@@ -17,7 +22,6 @@ class LudoGame:
         self.check_game_constraints(token)
 
         self.display_game_state()
-
 
     def decide_player(self):
         # rotate turn amongst players
@@ -29,6 +33,12 @@ class LudoGame:
 
     def display_game_state(self):
         pass
+
+    def check_win_condition(self):
+        pass
+
+    def display_winner(self):
+        pass
     
 if __name__ == "__main__":
     colors = ["RED", "BLUE", "GREEN", "YELLOW"]
@@ -38,5 +48,5 @@ if __name__ == "__main__":
     token = player.tokens[3]
 
     for _ in range(50):
-        lg.run_game(player, token)
+        lg.take_turn(player, token)
         print("-" * 10)

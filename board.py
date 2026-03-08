@@ -3,7 +3,7 @@ from cell import Cell
 
 class Board:
     def __init__(self, board_size=52):
-        self.size = board_size
+        self.board_size = board_size
         self.board = self._create_board(board_size)
 
     def _create_board(self, board_size):
@@ -17,12 +17,16 @@ class Board:
         # move out of base onto track
         if token.state == TokenState.IN_BASE:
             if die_roll == 6:
-                token.state = TokenState.ON_TRACK
-                token.position = 0
-
+                self.move_token_from_base(token)
                 print(f"{token.index} moved on to track")
         # move on track
         else:
-            token.position = (token.position + die_roll) % self.size
-            # if token.position <= 
+            self.move_token_on_track(token, die_roll)
             print(f"{token.state} New position of token-{token.index} is {token.position}")
+        
+    def move_token_from_base(self, token):
+        token.state = TokenState.ON_TRACK
+        token.position = 0
+
+    def move_token_on_track(self, token, steps):
+        token.position = (token.position + steps) % self.board_size
