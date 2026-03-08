@@ -4,9 +4,9 @@ from cell import Cell
 class Board:
     def __init__(self, board_size=52):
         self.size = board_size
-        self.board = self._build_board(board_size)
+        self.board = self._create_board(board_size)
 
-    def _build_board(self, board_size):
+    def _create_board(self, board_size):
         board = [Cell.create_cell(i) for i in range(board_size)]
         # safe_zones = []
         # for i in safe_zones:

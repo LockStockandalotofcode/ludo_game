@@ -8,20 +8,27 @@ class LudoGame:
         self.board = Board()
         self.die = Die()
 
-    def play_turn_with_token(self, player, token):
-        print(f"Turn by Player {player.index} {player.color}")
+    def run_game(self, player, token):
         die_roll = self.die.roll_die()
-        # token = player.tokens[token_index]
+        # curr_player = self.decide_player()
+        # token = self.curr_player.decide_token()
+        print(f"Turn by Player {player.index} {player.color} Token {token.index}")
         self.board.move_token(token, die_roll)
+        self.check_game_constraints(token)
 
-     # def run_game(self):
-        # runs this for all players, to come up with the winner
-        # curr_player.play_turn_with_token(token)
+        self.display_game_state()
 
-        # self.display_winner()
+
+    def decide_player(self):
+        # rotate turn amongst players
+        # grant one extra turn for 6 on die
+        pass
     
-    # def display_winner(self):
-    #     pass
+    def check_game_constraints(self, token):
+        pass
+
+    def display_game_state(self):
+        pass
     
 if __name__ == "__main__":
     colors = ["RED", "BLUE", "GREEN", "YELLOW"]
@@ -31,5 +38,5 @@ if __name__ == "__main__":
     token = player.tokens[3]
 
     for _ in range(50):
-        lg.play_turn_with_token(player, token)
+        lg.run_game(player, token)
         print("-" * 10)

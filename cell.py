@@ -11,10 +11,12 @@ class Cell:
         self.tokens = []
 
     def place_token(self, token):
-        self.tokens.append(token)
+        pass
+        # self.tokens.append(token)
 
     def remove_token(self, token):
-        self.tokens.remove(token)
+        pass
+        # self.tokens.remove(token)
 
     @classmethod
     def create_cell(cls, i):
