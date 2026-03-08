@@ -7,10 +7,14 @@ class Board:
         self.board = self._create_board(board_size)
 
     def _create_board(self, board_size):
-        board = [Cell.create_cell(i) for i in range(board_size)]
-        # safe_zones = []
-        # for i in safe_zones:
-        #     board[i].celltype = CellType.SAFE_CELL
+        board = [Cell(position=i) for i in range(board_size)]
+        board = self.mark_safe_zones(board)
+        return board
+    
+    def mark_safe_zones(self, board):
+        mapping = []
+        for i in mapping:
+            board[i].celltype = CellType.SAFE_CELL
         return board
     
     def move_token(self, token: Token, die_roll: int):

@@ -17,7 +17,3 @@ class Cell:
     def remove_token(self, token):
         pass
         # self.tokens.remove(token)
-
-    @classmethod
-    def create_cell(cls, i):
-        return cls(position=i)
