@@ -1,6 +1,6 @@
 from dice import Die
 from player import Player
-from token import Token, TokenState
+from game_token import Token, TokenState
 from board import Board
 
 class LudoGame:

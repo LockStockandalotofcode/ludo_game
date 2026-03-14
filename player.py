@@ -1,4 +1,4 @@
-from token import Token
+from game_token import Token
 from random import randint
 
 class Player:
