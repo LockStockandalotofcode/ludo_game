@@ -57,13 +57,3 @@ class LudoGame:
                     break
             print(f"Player {player.index} {player.color}")
     
-if __name__ == "__main__":
-    colors = ["RED", "BLUE", "GREEN", "YELLOW"]
-    lg = LudoGame(n_players=4, colors=colors)
-    # lg.run_game()
-    player = lg.players[0]
-    token = player.tokens[3]
-
-    for _ in range(50):
-        # lg.take_turn(player, token)
-        print("-" * 10)
