@@ -1,10 +1,11 @@
 from dice import Die
 from player import Player
+from token import Token, TokenState
 from board import Board
 
 class LudoGame:
     def __init__(self, n_players, colors: list):
-        self.players = [Player(i, color) for i in range(n_players) for color in colors]
+        self.players = [Player(i, colors[i]) for i in range(n_players)]
         self.n_players = n_players
         self.current_player_index = 0
         self.board = Board()
@@ -23,27 +24,34 @@ class LudoGame:
         token = player.decide_token()
         print(f"Turn by Player {player.index} {player.color} Token {token.index}")
         self.board.move_token(token, die_roll)
-        self.check_game_constraints(token)
-
         self.display_game_state()
 
     def decide_player(self, die_roll):
         current_player = self.players[self.current_player_index]
         if die_roll != 6:
-            self.current_player_index += 1
+            self.current_player_index = (self.current_player_index + 1) % self.n_players
         return current_player
-    
-    def check_game_constraints(self, token):
-        pass
 
     def display_game_state(self):
-        pass
+        for player in self.players:
+            print(f"Player {player.index} {player.color}") 
+            for token in player.tokens:
+                print(f"Token {token.index} position = {token.position}")
 
     def check_win_condition(self):
-        pass
+        for player in self.players:
+            if all(t.state == TokenState.FINISHED for t in player.tokens):
+                return True
+        return False
 
     def display_winner(self):
-        pass
+        for player in self.players:
+            for token in player.tokens:
+                if token.state == TokenState.FINISHED:
+                    continue
+                else:
+                    break
+            print(f"Player {player.index} {player.color}")
     
 if __name__ == "__main__":
     colors = ["RED", "BLUE", "GREEN", "YELLOW"]

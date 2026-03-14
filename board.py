@@ -32,11 +32,11 @@ class Board:
         token.state = TokenState.ON_TRACK
         token.position = 0
         cell = self.board[token.position]
-        cell.place_token()
+        cell.place_token(token)
 
     def move_token_on_track(self, token, steps):
         cell = self.board[token.position]
-        cell.remove_token()
+        cell.remove_token(token)
         token.position = (token.position + steps) % self.board_size
         cell = self.board[token.position]
-        cell.place_token()
+        cell.place_token(token)
