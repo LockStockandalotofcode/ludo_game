@@ -29,4 +29,9 @@ def test_no_move_on_less_than_6(game):
 
     assert token.state == TokenState.IN_BASE
     assert token.position == -1
-    
+
+# def test_player_rotation()
+
+# def test_extra_turn_on_six()
+
+

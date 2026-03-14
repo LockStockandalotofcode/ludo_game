@@ -22,7 +22,11 @@ class LudoGame:
         die_roll = self.die.roll_die()
         player = self.decide_player(die_roll)
         token = player.decide_token()
-        print(f"Turn by Player {player.index} {player.color} Token {token.index}")
+        print(f"Turn by Player {player.index} {player.color}")
+        if token is None:
+            print(f"all tokens in base, turn skipped")
+            return
+        print(f"Token {token.index}")
         self.board.move_token(token, die_roll)
         self.display_game_state()
 
