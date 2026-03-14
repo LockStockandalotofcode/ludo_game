@@ -11,8 +11,7 @@ class Cell:
         self.tokens = []
 
     def place_token(self, token):
-        pass
-        # self.tokens.append(token)
+        self.tokens.append(token)
 
     def remove_token(self, token):
         pass

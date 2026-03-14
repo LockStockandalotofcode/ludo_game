@@ -1,5 +1,5 @@
 from token import Token, TokenState
-from cell import Cell
+from cell import Cell, CellType
 
 class Board:
     def __init__(self, board_size=52):
@@ -22,7 +22,7 @@ class Board:
         if token.state == TokenState.IN_BASE:
             if die_roll == 6:
                 self.move_token_from_base(token)
-                print(f"{token.index} moved on to track")
+                print(f"{token.index} moved from base on to track")
         # move on track
         else:
             self.move_token_on_track(token, die_roll)
@@ -31,6 +31,12 @@ class Board:
     def move_token_from_base(self, token):
         token.state = TokenState.ON_TRACK
         token.position = 0
+        cell = self.board[token.position]
+        cell.place_token()
 
     def move_token_on_track(self, token, steps):
+        cell = self.board[token.position]
+        cell.remove_token()
         token.position = (token.position + steps) % self.board_size
+        cell = self.board[token.position]
+        cell.place_token()
