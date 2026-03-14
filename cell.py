@@ -14,5 +14,4 @@ class Cell:
         self.tokens.append(token)
 
     def remove_token(self, token):
-        pass
-        # self.tokens.remove(token)
+        self.tokens.remove(token)
